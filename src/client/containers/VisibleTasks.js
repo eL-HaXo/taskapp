@@ -19,7 +19,6 @@ const getVisibleTasks = (tasks, filter) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log('State from MAp', state);
     return {
         tasks: getVisibleTasks(state.tasks.tasks, state.visibilityFilter)
     }
@@ -27,8 +26,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onTaskClick: (id) => {
-            dispatch(toggleTask(id))
+        onTaskToggleClick: (id, status) => {
+            dispatch(toggleTask(id, status))
         }
     }
 };

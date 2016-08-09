@@ -12,13 +12,33 @@ def plog(msg):
 def hello():
     return "Hello World from My App"
 
+@app.route("/task/status", methods=["POST"])
+def task_status():
+    if request.method == "POST":
+        task_id = int(request.form["id"])
+        status = int(request.form["status"])
+        status = 1 if status == 0 else 0
+        plog("TOGGLE:")
+        plog("task_id = " + str(task_id))
+        plog("status = " + str(status))
+    return jsonify({
+        "id": task_id,
+        "status": status
+    })
+
 @app.route("/task/save", methods=["POST"])
 def save_task():
     if request.method == "POST":
+        task_id = request.form["id"]
+        status = request.form["status"]
+        if task_id == "new":
+            status = 0
+            task_id = int(round(random() * 1000))
+        else:
+            task_id = int(task_id)
         description = request.form["description"]
         target_date = request.form["targetDate"]
         priority = request.form["priority"]
-        task_id = int(round(random() * 1000))
         plog("Form Inputs:")
         plog("task id = " + str(task_id))
         plog(description)
@@ -28,7 +48,8 @@ def save_task():
         "id": task_id,
         "description": description,
         "targetDate": target_date,
-        "priority": priority
+        "priority": priority,
+        "status": int(status)
     })
 
 

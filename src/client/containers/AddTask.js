@@ -11,7 +11,6 @@ import { SaveButton, CancelButton } from '../components/inputs';
 let AddTask = ({ dispatch }) => {
 
     let buildTaskPayload = (description, targetDate, priority) => {
-        console.log('confirm closure', description, targetDate, priority);
         dispatch(saveTask({
             description: description,
             targetDate: targetDate,

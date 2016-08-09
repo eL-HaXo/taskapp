@@ -12,10 +12,14 @@ import {
 
 import DateTimeFormat from '../../utils/dateTimeFormat.js';
 
+// import ToggleTask from '../../containers/ToggleTask.js';
+
+import { StatusButton } from '../inputs';
+
 class Task extends React.Component{
     render() {
         let task = this.props.task;
-        console.log('Task:', task);
+
         let dtFormat = new DateTimeFormat('en-US', {
             weekday: 'long',
             day: 'numeric',
@@ -33,7 +37,7 @@ class Task extends React.Component{
                     showExpandableButton={true}
                 />
                 <CardActions expandable={true}>
-                    <FlatButton label={(task.status) ? "Re-open" : "Complete" } primary={true} />
+                    <StatusButton onClick={() => { this.props.onTaskToggleClick(task.id, task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
                     <FlatButton label="Edit" />
                 </CardActions>
             </Card>

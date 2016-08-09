@@ -4,6 +4,7 @@ import Priority from './Priority.jsx';
 import SaveButton from './SaveButton.jsx';
 import CancelButton from './CancelButton.jsx';
 import AddButton from './AddButton.jsx';
+import StatusButton from './StatusButton.jsx';
 
 module.exports = {
     Description: Description,
@@ -11,5 +12,6 @@ module.exports = {
     Priority: Priority,
     SaveButton: SaveButton,
     CancelButton: CancelButton,
-    AddButton: AddButton
+    AddButton: AddButton,
+    StatusButton: StatusButton
 };
