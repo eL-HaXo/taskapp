@@ -10,13 +10,12 @@ import {
     CardText
 } from 'material-ui/Card';
 
-console.log('Task.jsx');
 import DateTimeFormat from '../../utils/dateTimeFormat.js';
 
 class Task extends React.Component{
     render() {
         let task = this.props.task;
-        // console.log('Task:', task);
+        console.log('Task:', task);
         let dtFormat = new DateTimeFormat('en-US', {
             weekday: 'long',
             day: 'numeric',

@@ -8,7 +8,7 @@ import { ManageTask } from '../components/pages';
 import { SaveButton, CancelButton } from '../components/inputs';
 
 
-let AddTask = ({ dispatch }) => {
+let ToggleTask = ({ dispatch }) => {
 
     let buildTaskPayload = (description, targetDate, priority) => {
         console.log('confirm closure', description, targetDate, priority);
@@ -29,6 +29,6 @@ let AddTask = ({ dispatch }) => {
     );
 };
 
-AddTask = connect()(AddTask);
+ToggleTask = connect()(ToggleTask);
 
-export default AddTask;
+export default ToggleTask;

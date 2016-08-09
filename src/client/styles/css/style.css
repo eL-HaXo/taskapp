@@ -20,6 +20,14 @@ body {
     letter-spacing: -0.03em;
 }
 
+.header-logo a {
+    text-decoration: none;
+}
+
+.header-logo a:visited {
+    color:#41a5ff;
+}
+
 .content-padding {
     padding: 15px;
 }

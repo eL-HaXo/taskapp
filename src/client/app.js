@@ -1,9 +1,11 @@
+import 'babel-polyfill';
 // React Imports
 import React from 'react';
 import {render} from 'react-dom';
 // Redux Imports
 import { Provider } from 'react-redux';
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 // Router Imports
 import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
 import { Route, IndexRoute } from 'react-router';
@@ -22,7 +24,6 @@ import {
 import AddTask from './containers/AddTask.js';
 
 // Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
 const routes = (
@@ -33,12 +34,13 @@ const routes = (
     </Route>
 );
 
-// let store = createStore();
 const store = compose(
     reduxReactRouter({
         routes,
         createHistory
-    })
+    }),
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(taskApp);
 
 render(

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import {toggleTodo} from '../actions'
+import {toggleTask} from '../actions';
 import {TaskList} from '../components/sections';
 
 const getVisibleTasks = (tasks, filter) => {
@@ -19,8 +19,9 @@ const getVisibleTasks = (tasks, filter) => {
 };
 
 const mapStateToProps = (state) => {
+    console.log('State from MAp', state);
     return {
-        tasks: getVisibleTasks(state.tasks, state.visibilityFilter)
+        tasks: getVisibleTasks(state.tasks.tasks, state.visibilityFilter)
     }
 };
 
