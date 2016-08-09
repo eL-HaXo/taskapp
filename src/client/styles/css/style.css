@@ -1,0 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Asap:400,700);
+body {
+    font-family: 'Asap', sans-serif;
+    background-color: #f1f4f8;
+}
+
+.header {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 2px solid #c5d0de;
+    z-index: 100;
+    box-sizing: border-box;
+    padding: 5px 15px 5px 15px;
+}
+
+.header-logo {
+    color: #41a5ff;
+    font-size: 24pt;
+    font-weight: bold;
+    letter-spacing: -0.03em;
+}
+
+.content-padding {
+    padding: 15px;
+}
+
+.floatingButton-fixed-br {
+    position: fixed;
+    bottom: 20;
+    right: 15;
+}
+
+.task {
+    margin-bottom: 10px;
+}
+
+.task-outer-complete {
+    opacity: 0.5;
+}
+
+.task-visible-complete * {
+    text-decoration: line-through;
+}
