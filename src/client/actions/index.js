@@ -13,6 +13,7 @@ export const postAddTask = (inputs) => {
 
 export const RECEIVE_TASK_ADD = 'RECEIVE_TASK_ADD';
 export const receiveAddTask = (json) => {
+    console.log('New Date', new Date(json.targetDate));
     return {
         type: RECEIVE_TASK_ADD,
         newTask: {
@@ -41,6 +42,14 @@ export const receiveTaskToggle = (json) => {
         type: RECEIVE_TASK_TOGGLE,
         id: json.id,
         status: json.status
+    };
+};
+
+export const TASKLIST_SORT_BY = 'TASKLIST_SORT_BY';
+export const taskListSortBy = (sortField) => {
+    return {
+        type: TASKLIST_SORT_BY,
+        sortField: sortField
     };
 };
 
