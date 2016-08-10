@@ -31,7 +31,7 @@ class Task extends React.Component{
         const PRIORITY_COLORS = {
             1: '#FF1B47',
             2: '#E8CC0D',
-            3: '#222933'
+            3: '#657892'
         }
 
         return (
