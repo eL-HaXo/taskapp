@@ -1,5 +1,6 @@
 node_modules
 src/server/taskapp
+src/server/static/bundle.js
 *.pyc
 
 src/server/static/bundle.js

@@ -1,12 +1,15 @@
 import {connect} from 'react-redux'
-import {toggleTask} from '../actions';
-import {TaskList} from '../components/sections';
+import {
+    taskListSortBy,
+    taskListVisibiltyFilter
+} from '../actions';
+import {ControlBar} from '../components/sections';
 
 const getVisibleTasks = (tasks, filter) => {
     if (tasks === undefined)
         tasks = [];
     if (filter === undefined)
-        filter = 'ALL';
+        filter = 'SHOW_ALL';
 
     switch (filter) {
         case 'ALL':
@@ -20,22 +23,26 @@ const getVisibleTasks = (tasks, filter) => {
 
 const mapStateToProps = (state) => {
     return {
-        tasks: getVisibleTasks(state.tasks.tasks, state.visibilityFilter),
+        sortField: state.tasks.sortField,
         visibilityFilter: state.visibilityFilter
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onTaskToggleClick: (id, status) => {
-            dispatch(toggleTask(id, status))
+        onSortOrderChange: (e, sortField) => {
+            dispatch(taskListSortBy(sortField));
+        },
+        onVisibilityFilterChange: (e, visibilityFilter) => {
+            console.log('onVisibilityFilterChange', visibilityFilter);
+            dispatch(taskListVisibiltyFilter(visibilityFilter));
         }
     }
 };
 
-const VisibleTasks = connect(
+const ViewControls = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TaskList);
+)(ControlBar);
 
-export default VisibleTasks;
+export default ViewControls;

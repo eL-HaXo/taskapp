@@ -13,7 +13,6 @@ export const postAddTask = (inputs) => {
 
 export const RECEIVE_TASK_ADD = 'RECEIVE_TASK_ADD';
 export const receiveAddTask = (json) => {
-    console.log('New Date', new Date(json.targetDate));
     return {
         type: RECEIVE_TASK_ADD,
         newTask: {
@@ -28,7 +27,6 @@ export const receiveAddTask = (json) => {
 
 export const POST_TASK_TOGGLE = 'POST_TASK_TOGGLE';
 export const postTaskToggle = (id, status) => {
-    console.log('postTaskToggle', id, status);
     return {
         type: POST_TASK_TOGGLE,
         id: id,
@@ -70,14 +68,7 @@ export function saveTask(inputs) {
             body: form
         })
         .then(response => response.json())
-        .then(json =>
-            dispatch(receiveAddTask(json))
-        ).then(() => {
-            console.log('Go To Home. PUSH', push);
-            dispatch(push({
-                pathname: '/edit'
-            }));
-        });
+        .then(json => dispatch(receiveAddTask(json)));
     }
 };
 
@@ -100,9 +91,11 @@ export const toggleTask = (id, status) => {
     }
 };
 
-export const setVisibilityFilter = (filter) => {
+export const TASKLIST_VISIBILITY_FILTER = 'TASKLIST_VISIBILITY_FILTER';
+export const taskListVisibiltyFilter = (visibilityFilter) => {
+    console.log('Vis action', visibilityFilter);
     return {
-        type: 'SET_VISIBILITY_FILTER',
-        filter
-    }
+        type: TASKLIST_VISIBILITY_FILTER,
+        visibilityFilter: visibilityFilter
+    };
 }

@@ -15,7 +15,6 @@ class Priority extends React.Component{
     }
 
     _handleFieldChange(e, k, payload) {
-        console.log('setting priority', payload);
         this.setState({
             value: payload
         });

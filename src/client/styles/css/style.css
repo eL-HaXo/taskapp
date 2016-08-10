@@ -40,6 +40,19 @@ body {
 
 .task {
     margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.task-priority {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: -15px;
+    right: -15px;
 }
 
 .task-outer-complete {

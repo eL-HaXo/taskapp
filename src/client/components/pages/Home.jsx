@@ -17,6 +17,7 @@ import {
 
 import GoToAddTask from '../../containers/GoToAddTask.js';
 import VisibleTasks from '../../containers/VisibleTasks.js';
+import ViewControls from '../../containers/ViewControls.js';
 
 import {
     AddButton
@@ -52,7 +53,7 @@ class TaskList extends React.Component{
 
         return (
             <div>
-                <ControlBar />
+                <ViewControls />
                 <div className="content-padding">
                     <VisibleTasks />
                     {

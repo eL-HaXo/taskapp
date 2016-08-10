@@ -53,10 +53,10 @@ def save_task():
     })
 
 
-@app.route("/edit")
+@app.route("/edit/<int:task_id>")
 @app.route("/add")
 @app.route("/")
-def main():
+def main(*args, **kwargs):
     return send_file('./static/index.html')
 
 if __name__ == "__main__":

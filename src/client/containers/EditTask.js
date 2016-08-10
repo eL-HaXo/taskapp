@@ -8,10 +8,15 @@ import { ManageTask } from '../components/pages';
 import { SaveButton, CancelButton } from '../components/inputs';
 
 
-let AddTask = ({ dispatch }) => {
+const getTaskToEdit = (tasks, taskId) => {
+    return (tasks.filter(t => t.id == taskId))[0];
+};
+
+
+let EditTask = (props) => {
+    const { dispatch } = props;
 
     let buildTaskPayload = (taskId, description, targetDate, priority) => {
-        console.log('Add Task', taskId, description, targetDate, priority);
         dispatch(saveTask({
             taskId: taskId,
             description: description,
@@ -21,7 +26,7 @@ let AddTask = ({ dispatch }) => {
     };
 
     return (
-        <ManageTask onSubmit={buildTaskPayload}>
+        <ManageTask task={props.task} onSubmit={buildTaskPayload}>
             <CardActions>
                 <CancelButton />
                 <SaveButton />
@@ -30,6 +35,12 @@ let AddTask = ({ dispatch }) => {
     );
 };
 
-AddTask = connect()(AddTask);
+const mapStateToProps = (state, props) => {
+    return {
+        task: getTaskToEdit(state.tasks.tasks, props.params.taskId)
+    }
+};
 
-export default AddTask;
+EditTask = connect(mapStateToProps)(EditTask);
+
+export default EditTask;

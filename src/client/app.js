@@ -18,10 +18,10 @@ import muiTheme from './styles/themes/muiTheme';
 import AppWrapper from './components/AppWrapper.jsx';
 import taskApp from './reducers';
 import {
-    ManageTask,
     Home
 } from './components/pages';
 import AddTask from './containers/AddTask.js';
+import EditTask from './containers/EditTask.js';
 
 // Needed for onTouchTap
 injectTapEventPlugin();
@@ -29,7 +29,7 @@ injectTapEventPlugin();
 const routes = (
     <Route path="/" component={AppWrapper}>
         <IndexRoute name="home" component={Home} />
-        <Route name="edit" path="edit" component={ManageTask} />
+        <Route name="edit" path="edit/:taskId" component={EditTask} />
         <Route name="add" path="add" component={AddTask} />
     </Route>
 );
@@ -46,15 +46,6 @@ const store = compose(
 render(
     <MuiThemeProvider muiTheme={muiTheme}>
         <Provider store={store}>
-            {
-            // <Router history={history}>
-            //     <Route path="/" component={AppWrapper}>
-            //         <IndexRoute name="home" component={Home} />
-            //         <Route name="edit" path="edit" component={ManageTask} />
-            //         <Route name="add" path="add" component={AddTask} />
-            //     </Route>
-            // </Router>
-            }
             <ReduxRouter>
                 {routes}
             </ReduxRouter>

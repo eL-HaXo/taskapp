@@ -5,6 +5,7 @@ import SaveButton from './SaveButton.jsx';
 import CancelButton from './CancelButton.jsx';
 import AddButton from './AddButton.jsx';
 import StatusButton from './StatusButton.jsx';
+import TaskId from './TaskId.jsx';
 
 module.exports = {
     Description: Description,
@@ -13,5 +14,6 @@ module.exports = {
     SaveButton: SaveButton,
     CancelButton: CancelButton,
     AddButton: AddButton,
-    StatusButton: StatusButton
+    StatusButton: StatusButton,
+    TaskId: TaskId
 };

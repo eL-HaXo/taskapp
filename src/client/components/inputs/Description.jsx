@@ -11,6 +11,12 @@ class Description extends React.Component{
         };
     }
 
+    componentWillMount() {
+        this.setState({
+            value: this.props.value
+        })
+    }
+
     _handleFieldChange(e) {
         this.setState({
             value: e.target.value
@@ -18,7 +24,6 @@ class Description extends React.Component{
     }
 
     render() {
-        let input;
         return (
             <TextField
                 onChange={this._handleFieldChange}

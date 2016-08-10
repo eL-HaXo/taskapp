@@ -29,10 +29,12 @@ class ControlBar extends React.Component{
                             <IconButton touch={true}>
                                 <ContentSort />
                             </IconButton>
-                        }>
-                        <MenuItem primaryText="Priority" />
-                        <MenuItem primaryText="Target Date" />
-                        <MenuItem primaryText="Description" />
+                        }
+                        onChange={this.props.onSortOrderChange}
+                        value={this.props.sortField}>
+                        <MenuItem value="targetDate" primaryText="Target Date" />
+                        <MenuItem value="priority" primaryText="Priority" />
+                        <MenuItem value="description" primaryText="Description" />
                     </IconMenu>
                     <ToolbarSeparator />
                     <IconMenu
@@ -40,10 +42,12 @@ class ControlBar extends React.Component{
                             <IconButton touch={true}>
                                 <ContentFilterList />
                             </IconButton>
-                        }>
-                        <MenuItem primaryText="All" />
-                        <MenuItem primaryText="Todo" />
-                        <MenuItem primaryText="Complete" />
+                        }
+                        onChange={this.props.onVisibilityFilterChange}
+                        value={this.props.visibilityFilter}>
+                        <MenuItem value="ALL" primaryText="All" />
+                        <MenuItem value="TODO" primaryText="Todo" />
+                        <MenuItem value="COMPLETE" primaryText="Complete" />
                     </IconMenu>
                 </ToolbarGroup>
             </Toolbar>

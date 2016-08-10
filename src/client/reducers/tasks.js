@@ -11,12 +11,30 @@ const DEFAULT_SORT_ORDER = 'targetDate';
 const defaultTasksState = {
     isFetching: false,
     sortField: DEFAULT_SORT_ORDER,
-    tasks: []
+    tasks: [{
+        id: 1,
+        description: "High Priority Task.",
+        priority: 1,
+        status: 0,
+        targetDate: new Date()
+    },{
+        id: 2,
+        description: "Medium Priority Task.",
+        priority: 2,
+        status: 0,
+        targetDate: new Date()
+    },{
+        id: 3,
+        description: "Low Priority Task.",
+        priority: 3,
+        status: 1,
+        targetDate: new Date()
+    }]
 };
-const sortOrders = {
-    targetDate: ['targetDate', 'priority'],
-    priority: ['priority', 'targetDate'],
-    description: ['description', 'targetDate', 'priority']
+const SORT_ORDERS = {
+    targetDate: ['targetDate', 'priority', 'status'],
+    priority: ['priority', 'targetDate', 'status'],
+    description: ['description', 'targetDate', 'priority', 'status']
 };
 
 const task = (state = {}, action) => {
@@ -44,12 +62,12 @@ const task = (state = {}, action) => {
 };
 
 const tasks = (state = defaultTasksState , action) => {
-    let sortOrder = _.get(sortOrders, action.sortField, DEFAULT_SORT_ORDER);
+    let sortOrder = _.get(SORT_ORDERS, [action.sortField], SORT_ORDERS[DEFAULT_SORT_ORDER]);
     switch (action.type) {
         case TASKLIST_SORT_BY:
             return Object.assign({}, state, {
                 sortField: action.sortField,
-                tasks: _.sortBy(tasks, sortOrder)
+                tasks: _.sortBy(state.tasks, sortOrder)
             });
 
 
@@ -70,7 +88,6 @@ const tasks = (state = defaultTasksState , action) => {
 
 
         case POST_TASK_TOGGLE:
-            console.log('POST_TASK_TOGGLE', state);
             return Object.assign({}, state, {
                 isFetching: true,
                 tasks: state.tasks.map(t =>
@@ -80,7 +97,6 @@ const tasks = (state = defaultTasksState , action) => {
 
 
         case RECEIVE_TASK_TOGGLE:
-            console.log('RECEIVE_TASK_TOGGLE', state);
             return Object.assign({}, state, {
                 isFetching: false,
                 tasks: state.tasks.map(t =>

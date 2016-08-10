@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import {
     FlatButton
 } from 'material-ui';
@@ -27,8 +28,15 @@ class Task extends React.Component{
             year: 'numeric',
         }).format;
 
+        const PRIORITY_COLORS = {
+            1: 'red',
+            2: 'yellow',
+            3: 'gray'
+        }
+
         return (
             <Card className={(task.status) ? "task task-outer task-outer-complete" : "task task-outer"}>
+                <div className="task-priority" style={{backgroundColor: PRIORITY_COLORS[task.priority]}} />
                 <CardHeader
                     title={task.description}
                     className={(task.status) ? "task-visible task-visible-complete" : "task-visible"}
@@ -38,7 +46,7 @@ class Task extends React.Component{
                 />
                 <CardActions expandable={true}>
                     <StatusButton onClick={() => { this.props.onTaskToggleClick(task.id, task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
-                    <FlatButton label="Edit" />
+                    <Link to={'/edit/'+task.id}><FlatButton label="Edit" /></Link>
                 </CardActions>
             </Card>
         );

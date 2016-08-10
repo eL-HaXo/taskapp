@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import tasks from './tasks.js';
 import { routerStateReducer } from 'redux-router';
 import visibilityFilter from './visibilityFilter';
-console.log('redindex', tasks);
+
 const taskApp = combineReducers({
   tasks: tasks,
   visibilityFilter: visibilityFilter,

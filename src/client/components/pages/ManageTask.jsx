@@ -10,6 +10,7 @@ import {
 
 // Form Inputs
 import  {
+    TaskId,
     Description,
     TargetDate,
     Priority,
@@ -23,18 +24,26 @@ class ManageTask extends React.Component{
         this._submitForm = this._submitForm.bind(this);
     }
 
-    _submitForm(e, description, targetDate, priority) {
+    _submitForm(e, taskId, description, targetDate, priority) {
         e.preventDefault();
-        this.props.onSubmit(description.state.value, targetDate.state.value, priority.state.value);
+        this.props.onSubmit(taskId.state.value, description.state.value, targetDate.state.value, priority.state.value);
     }
 
     render() {
         let formTitle = 'Add Task';
         let formSubTitle = 'Fill out the fields below to create a new task';
-        let description, targetDate, priority;
+        let task = _.get(this.props, 'task', {});
+        let description, targetDate, priority, taskId;
+        let valueDescription = task.description || ""
+        console.log('Task to edit', task, valueDescription);
         return (
             <div className="content-padding">
-                <form onSubmit={(e) => { this._submitForm(e, description, targetDate, priority); }}>
+                <form onSubmit={(e) => { this._submitForm(e, taskId, description, targetDate, priority); }}>
+                    <TaskId
+                        ref={node => {
+                            taskId = node;
+                        }}
+                        value={task.id || 'new'} />
                     <Card className="form">
                         <CardTitle
                             title={formTitle}
@@ -46,21 +55,21 @@ class ManageTask extends React.Component{
                                     ref={node => {
                                         description = node;
                                     }}
-                                    value={this.props.description || ''} />
+                                    value={valueDescription} />
                             </div>
                             <div>
                                 <TargetDate
                                     ref={node => {
                                         targetDate = node;
                                     }}
-                                    value={this.props.targetDate || ''} />
+                                    value={task.targetDate || ''} />
                             </div>
                             <div>
                                 <Priority
                                     ref={node => {
                                         priority = node;
                                     }}
-                                    value={this.props.priority || ''} />
+                                    value={task.priority || ''} />
                             </div>
                         </CardText>
                         {this.props.children}

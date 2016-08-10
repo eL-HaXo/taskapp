@@ -5,7 +5,17 @@ import Task from './Task.jsx';
 
 class TaskList extends React.Component{
     render() {
-        let tasks = this.props.tasks;
+        let {
+            tasks,
+            visibilityFilter
+        } = this.props;
+
+        let noTasksMessage = 'You don\'t have any tasks';
+        if (visibilityFilter === 'COMPLETE')
+            noTasksMessage = 'You don\'t have any completed tasks';
+        else if (visibilityFilter === 'TODO')
+            noTasksMessage = 'You don\'t have any active tasks';
+
         return (
             <div>
                 {tasks.length ?
@@ -15,7 +25,7 @@ class TaskList extends React.Component{
                         );
                     })
                 :
-                    <p>{'You don\'t have any tasks'}</p>
+                    <p>{noTasksMessage}</p>
                 }
             </div>
         );
