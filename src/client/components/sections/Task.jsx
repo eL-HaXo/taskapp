@@ -29,9 +29,9 @@ class Task extends React.Component{
         }).format;
 
         const PRIORITY_COLORS = {
-            1: 'red',
-            2: 'yellow',
-            3: 'gray'
+            1: '#FF1B47',
+            2: '#E8CC0D',
+            3: '#222933'
         }
 
         return (
