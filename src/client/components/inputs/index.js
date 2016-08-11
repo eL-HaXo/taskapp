@@ -7,6 +7,9 @@ import AddButton from './AddButton.jsx';
 import StatusButton from './StatusButton.jsx';
 import TaskId from './TaskId.jsx';
 import Status from './Status.jsx';
+import Username from './Username.jsx';
+import Password from './Password.jsx';
+import LoginButton from './LoginButton.jsx';
 
 module.exports = {
     Description: Description,
@@ -17,5 +20,8 @@ module.exports = {
     AddButton: AddButton,
     StatusButton: StatusButton,
     TaskId: TaskId,
-    Status: Status
+    Status: Status,
+    Username: Username,
+    Password: Password,
+    LoginButton: LoginButton
 };

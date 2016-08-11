@@ -17,9 +17,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './styles/themes/muiTheme';
 import AppWrapper from './components/AppWrapper.jsx';
 import taskApp from './reducers';
-import {
-    Home
-} from './components/pages';
+import { Home } from './components/pages';
+import Login from './containers/Login.js';
 import AddTask from './containers/AddTask.js';
 import EditTask from './containers/EditTask.js';
 
@@ -29,6 +28,7 @@ injectTapEventPlugin();
 const routes = (
     <Route path="/" component={AppWrapper}>
         <IndexRoute name="home" component={Home} />
+        <Route name="login" path="login" component={Login} />
         <Route name="edit" path="edit/:taskId" component={EditTask} />
         <Route name="add" path="add" component={AddTask} />
     </Route>

@@ -20,7 +20,10 @@ let AddTask = ({ dispatch }) => {
     };
 
     return (
-        <ManageTask onSubmit={buildTaskPayload}>
+        <ManageTask
+            title="Add Task"
+            subtitle="Fill out the fields below to create a new task"
+            onSubmit={buildTaskPayload}>
             <CardActions>
                 <CancelButton />
                 <SaveButton />

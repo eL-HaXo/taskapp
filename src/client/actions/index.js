@@ -1,5 +1,20 @@
 import { push } from 'redux-router';
 
+export const POST_LOGIN = 'LOGIN';
+export const postLogin = () => {
+    return {
+        type: POST_LOGIN
+    };
+};
+
+export const RECEIVE_TASK_LIST = 'RECEIVE_TASK_LIST';
+export const receiveTaskList = (json) => {
+    return {
+        type: RECEIVE_TASK_LIST,
+        taskList: json.task_list
+    };
+}
+
 export const POST_TASK_ADD = 'POST_TASK_ADD';
 export const postAddTask = (inputs) => {
     return {
@@ -75,6 +90,32 @@ export const taskListSortBy = (sortField) => {
         type: TASKLIST_SORT_BY,
         sortField: sortField
     };
+};
+
+export function login(credentials) {
+    return function (dispatch) {
+
+        dispatch(postLogin());
+
+        let form = new FormData();
+        form.append('username', credentials.username);
+        form.append('password', credentials.password);
+
+        return fetch('/login_user', {
+            method: 'post',
+            body: form
+        })
+        .then(response => response.json())
+        .then((json) => {
+            if (json.success) {
+                dispatch(receiveTaskList(json.task_list));
+                dispatch(push('/'))
+            }
+            else {
+                alert('Login failed');
+            }
+        });
+    }
 };
 
 export function saveTask(task) {

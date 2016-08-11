@@ -6,7 +6,9 @@ import {
     RECEIVE_TASK_TOGGLE,
     TASKLIST_SORT_BY,
     POST_TASK_EDIT,
-    RECEIVE_TASK_EDIT
+    RECEIVE_TASK_EDIT,
+    POST_LOGIN,
+    RECEIVE_TASK_LIST
 } from '../actions';
 
 const DEFAULT_SORT_ORDER = 'target_date';
@@ -56,7 +58,6 @@ const task = (state = {}, action) => {
                 isFetching: false,
                 status: action.status
             });
-
 
         default:
             return state;
@@ -121,6 +122,16 @@ const tasks = (state = defaultTasksState , action) => {
                 )
             });
 
+        case POST_LOGIN:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+
+        case RECEIVE_TASK_LIST:
+            return Object.assign({}, state, {
+                isFetching: false,
+                tasks: action.task_list
+            });
 
         default:
             return state;

@@ -37,8 +37,8 @@ class ManageTask extends React.Component{
     }
 
     render() {
-        let formTitle = 'Add Task';
-        let formSubTitle = 'Fill out the fields below to create a new task';
+        let formTitle = this.props.title || 'Add Task';
+        let formSubTitle = this.props.subtitle || 'Fill out the fields below to create a new task';
         let task = _.get(this.props, 'task', {});
         let description, target_date, priority, taskId, status;
         let valueDescription = task.description || "";

@@ -26,10 +26,18 @@ let EditTask = (props) => {
         }));
     };
 
+    let cancelEdit = () => {
+        dispatch(push('/'));
+    };
+
     return (
-        <ManageTask task={props.task} onSubmit={buildTaskPayload}>
+        <ManageTask
+            task={props.task}
+            title="Edit Task"
+            subtitle="Change the fields below to update this task"
+            onSubmit={buildTaskPayload}>
             <CardActions>
-                <CancelButton />
+                <CancelButton onClick={cancelEdit} />
                 <SaveButton />
             </CardActions>
         </ManageTask>
