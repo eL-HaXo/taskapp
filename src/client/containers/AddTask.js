@@ -7,7 +7,6 @@ import { CardActions } from 'material-ui/Card';
 import { ManageTask } from '../components/pages';
 import { SaveButton, CancelButton } from '../components/inputs';
 
-
 let AddTask = ({ dispatch }) => {
 
     let buildTaskPayload = (taskId, description, target_date, priority) => {

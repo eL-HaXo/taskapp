@@ -28,9 +28,9 @@ class Description extends React.Component{
             <TextField
                 onChange={this._handleFieldChange}
                 ref="username"
-                floatingLabelText="Username"
+                floatingLabelText="Task List Name"
                 name="username"
-                hintText="Enter the username you were provided."
+                hintText="Enter a name for your task list."
                 fullWidth={true}
                 required={true}
             />

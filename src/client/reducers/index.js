@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import tasks from './tasks.js';
-import { routerStateReducer } from 'redux-router';
+import { routerReducer } from 'react-router-redux';
 import visibilityFilter from './visibilityFilter';
 
 const taskApp = combineReducers({
   tasks: tasks,
   visibilityFilter: visibilityFilter,
-  router: routerStateReducer
+  routing: routerReducer
 });
 
 export default taskApp;

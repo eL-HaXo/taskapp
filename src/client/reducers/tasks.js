@@ -15,6 +15,7 @@ const DEFAULT_SORT_ORDER = 'target_date';
 const defaultTasksState = {
     isFetching: false,
     sortField: DEFAULT_SORT_ORDER,
+    tasklistId: null,
     tasks: [{
         task_id: 1,
         description: "High Priority Task.",
@@ -128,9 +129,12 @@ const tasks = (state = defaultTasksState , action) => {
             });
 
         case RECEIVE_TASK_LIST:
+            console.log('RECEIVE_TASK_LIST', action);
             return Object.assign({}, state, {
                 isFetching: false,
-                tasks: action.task_list
+                tasklistId: action.taskListId,
+                tasklistName: action.taskListName,
+                tasks: action.taskList
             });
 
         default:

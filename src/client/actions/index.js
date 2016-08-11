@@ -1,4 +1,4 @@
-import { push } from 'redux-router';
+import { push } from 'react-router-redux';
 
 export const POST_LOGIN = 'LOGIN';
 export const postLogin = () => {
@@ -11,7 +11,9 @@ export const RECEIVE_TASK_LIST = 'RECEIVE_TASK_LIST';
 export const receiveTaskList = (json) => {
     return {
         type: RECEIVE_TASK_LIST,
-        taskList: json.task_list
+        taskList: json.tasklist,
+        taskListId: json.tasklist_id,
+        taskListName: json.tasklist_name
     };
 }
 
@@ -98,18 +100,18 @@ export function login(credentials) {
         dispatch(postLogin());
 
         let form = new FormData();
-        form.append('username', credentials.username);
-        form.append('password', credentials.password);
+        form.append('tasklist_name', credentials.username);
+        form.append('tasklist_password', credentials.password);
 
-        return fetch('/login_user', {
+        return fetch('/get_or_create_tasklist', {
             method: 'post',
             body: form
         })
         .then(response => response.json())
         .then((json) => {
             if (json.success) {
-                dispatch(receiveTaskList(json.task_list));
-                dispatch(push('/'))
+                dispatch(receiveTaskList(json));
+                dispatch(push('/tasklist'));
             }
             else {
                 alert('Login failed');

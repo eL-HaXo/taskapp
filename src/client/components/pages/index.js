@@ -1,9 +1,9 @@
 import ManageTask from './ManageTask.jsx';
 import Home from './Home.jsx';
-import LoginPage from './LoginPage.jsx';
+import SelectTaskListPage from './SelectTaskListPage.jsx';
 
 module.exports = {
     ManageTask: ManageTask,
     Home: Home,
-    LoginPage: LoginPage
+    SelectTaskListPage: SelectTaskListPage
 };

@@ -7,8 +7,8 @@ import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 // Router Imports
-import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
-import { Route, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import { createHistory } from 'history';
 // Material UI Imports
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -27,28 +27,26 @@ injectTapEventPlugin();
 
 const routes = (
     <Route path="/" component={AppWrapper}>
-        <IndexRoute name="home" component={Home} />
-        <Route name="login" path="login" component={Login} />
-        <Route name="edit" path="edit/:taskId" component={EditTask} />
+        <IndexRoute name="login" component={Login} />
+        <Route name="tasklist" path="tasklist" component={Home} />
+        <Route name="edit" path="/edit/:taskId" component={EditTask} />
         <Route name="add" path="add" component={AddTask} />
     </Route>
 );
 
 const store = compose(
-    reduxReactRouter({
-        routes,
-        createHistory
-    }),
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, routerMiddleware(browserHistory)),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore)(taskApp);
+
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
     <MuiThemeProvider muiTheme={muiTheme}>
         <Provider store={store}>
-            <ReduxRouter>
+            <Router history={history}>
                 {routes}
-            </ReduxRouter>
+            </Router>
         </Provider>
     </MuiThemeProvider>,
     document.getElementById('react')

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'redux-router';
+import { Link } from 'react-router';
 import { addTask } from '../actions';
 // import { Link } from 'react-router';
 import { CardActions } from 'material-ui/Card';
@@ -12,9 +12,9 @@ let GoToAddTask = ({ dispatch }) => {
     let goToAddTask = () => {
         dispatch(push('/add'));
     }
-
+    let tasklistId = 123;
     return (
-        <AddButton onClick={goToAddTask} />
+        <Link to={'/add'}><AddButton /></Link>
     );
 };
 

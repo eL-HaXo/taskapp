@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { login } from '../actions';
-import { LoginPage } from '../components/pages';
+import { SelectTaskListPage } from '../components/pages';
 import { LoginButton } from '../components/inputs';
 
 let Login = (props) => {
@@ -17,7 +17,7 @@ let Login = (props) => {
     };
     console.log('buildLoginInputs',buildLoginInputs);
     return (
-        <LoginPage onSubmit={buildLoginInputs} />
+        <SelectTaskListPage onSubmit={buildLoginInputs} />
     );
 };
 

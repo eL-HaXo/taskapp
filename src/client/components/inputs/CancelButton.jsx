@@ -2,13 +2,17 @@ import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationCancel from 'material-ui/svg-icons/navigation/cancel';
 
+import { Link } from 'react-router';
+
 class CancelButton extends React.Component{
     render() {
         return (
-            <FlatButton
-                label="Cancel"
-                icon={<NavigationCancel />}
-            />
+            <Link to="/tasklist">
+                <FlatButton
+                    label="Cancel"
+                    icon={<NavigationCancel />}
+                />
+            </Link>
         );
     }
 };

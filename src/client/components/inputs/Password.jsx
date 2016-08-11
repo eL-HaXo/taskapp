@@ -31,7 +31,7 @@ class Description extends React.Component{
                 ref="password"
                 floatingLabelText="Password"
                 name="password"
-                hintText="Enter the password you were provided."
+                hintText="Enter a task list password"
                 fullWidth={true}
                 required={true}
             />

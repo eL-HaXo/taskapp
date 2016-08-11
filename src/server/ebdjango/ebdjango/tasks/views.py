@@ -39,27 +39,33 @@ def task_status(request):
     })
 
 
-def login_user(request):
-    """ Logs in a user and retrieves their task list """
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    user = authenticate(username=username, password=password)
+# def create_tasklist(request):
+#     username = request.POST.get('username')
+#     password = request.POST.get('password')
+#     tasklist = TaskList.objects.get(user_id=user.id)
 
-    if user and user.is_active:
-        login(request, user)
+def get_or_create_tasklist(request):
+    """ Logs in a user and retrieves their task list """
+    tasklist_name = request.POST.get('tasklist_name')
+    tasklist_password = request.POST.get('tasklist_password')
         # Get Task List
-        tasklist = TaskList.objects.get(user_id=user.id)
-        task_list = [{
+    try:
+        tasklist = TaskList.objects.get(name=tasklist_name, password=tasklist_password)
+        tasklist_tasks = [{
             "task_id": task.task_id,
             "description": task.description,
             "status": task.status,
             "target_date": task.target_date,
             "priority": task.priority
         } for task in Task.objects.filter(tasklist_id=tasklist.tasklist_id)]
-
-        return JsonResponse({ 'success': True, 'task_list': task_list })
-    else:
-        return JsonResponse({ 'error': 'Sorry. I couldn\'t find that username / password combination.' })
+    except Exception, e:
+        tasklist = TaskList.objects.create(name=tasklist_name, password=tasklist_password)
+        tasklist_tasks = []
+        pass
+    print "TASKLIST ID:", tasklist.tasklist_id
+    return JsonResponse({ 'success': True, 'tasklist': tasklist_tasks, 'tasklist_id': tasklist.tasklist_id, 'tasklist_name': tasklist.name })
+    # else:
+    #     return JsonResponse({ 'error': 'Sorry. I couldn\'t find that username / password combination.' })
 
 
 def login_page(request):
@@ -68,7 +74,7 @@ def login_page(request):
     return render(request, 'index.html', {})
 
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def index(request, task_id=None):
     print "Index View"
     return render(request, 'index.html', {})

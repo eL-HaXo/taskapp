@@ -2,7 +2,7 @@ from django.db import models
 
 class TaskList(models.Model):
     tasklist_id = models.AutoField(primary_key=True)
-    user_id = models.IntegerField()
+    password = models.CharField(max_length=128)
     name = models.CharField(max_length=25)
 
     def __unicode__(self):
