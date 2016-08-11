@@ -11,6 +11,7 @@ import {
 // Form Inputs
 import  {
     TaskId,
+    Status,
     Description,
     TargetDate,
     Priority,
@@ -24,26 +25,39 @@ class ManageTask extends React.Component{
         this._submitForm = this._submitForm.bind(this);
     }
 
-    _submitForm(e, taskId, description, targetDate, priority) {
+    _submitForm(e, taskId, description, targetDate, priority, status) {
         e.preventDefault();
-        this.props.onSubmit(taskId.state.value, description.state.value, targetDate.state.value, priority.state.value);
+        this.props.onSubmit(
+            taskId.state.value,
+            description.state.value,
+            targetDate.state.value,
+            priority.state.value,
+            status.state.value
+        );
     }
 
     render() {
         let formTitle = 'Add Task';
         let formSubTitle = 'Fill out the fields below to create a new task';
         let task = _.get(this.props, 'task', {});
-        let description, targetDate, priority, taskId;
-        let valueDescription = task.description || ""
-        console.log('Task to edit', task, valueDescription);
+        let description, targetDate, priority, taskId, status;
+        let valueDescription = task.description || "";
+
+        let taskStatus = _.get(task, 'status', 0);
+
         return (
             <div className="content-padding">
-                <form onSubmit={(e) => { this._submitForm(e, taskId, description, targetDate, priority); }}>
+                <form onSubmit={(e) => { this._submitForm(e, taskId, description, targetDate, priority, status); }}>
                     <TaskId
                         ref={node => {
                             taskId = node;
                         }}
                         value={task.id || 'new'} />
+                    <Status
+                        ref={node => {
+                            status = node;
+                        }}
+                        value={taskStatus} />
                     <Card className="form">
                         <CardTitle
                             title={formTitle}

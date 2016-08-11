@@ -4,7 +4,9 @@ import {
     RECEIVE_TASK_ADD,
     POST_TASK_TOGGLE,
     RECEIVE_TASK_TOGGLE,
-    TASKLIST_SORT_BY
+    TASKLIST_SORT_BY,
+    POST_TASK_EDIT,
+    RECEIVE_TASK_EDIT
 } from '../actions';
 
 const DEFAULT_SORT_ORDER = 'targetDate';
@@ -83,6 +85,21 @@ const tasks = (state = defaultTasksState , action) => {
                 tasks: _.sortBy([
                     ...state.tasks,
                     action.newTask
+                ], sortOrder)
+            });
+
+        case POST_TASK_EDIT:
+            return Object.assign({}, state, {
+                isFetching: true
+            });
+
+
+        case RECEIVE_TASK_EDIT:
+            return Object.assign({}, state, {
+                isFetching: false,
+                tasks: _.sortBy([
+                    ..._.filter(state.tasks, (t) => { return t.id !== action.updatedTask.id }),
+                    action.updatedTask
                 ], sortOrder)
             });
 

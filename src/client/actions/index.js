@@ -25,6 +25,32 @@ export const receiveAddTask = (json) => {
     };
 };
 
+export const POST_TASK_EDIT = 'POST_TASK_EDIT';
+export const postTaskEdit = (task) => {
+    return {
+        type: POST_TASK_EDIT,
+        id: task.id,
+        status: task.status,
+        description: task.description,
+        priority: task.priority,
+        targetDate: task.targetDate
+    }
+};
+
+export const RECEIVE_TASK_EDIT = 'RECEIVE_TASK_EDIT';
+export const receiveTaskEdit = (json) => {
+    return {
+        type: RECEIVE_TASK_EDIT,
+        updatedTask: {
+            id: json.id,
+            description: json.description,
+            targetDate: new Date(json.targetDate),
+            priority: json.priority,
+            status: json.status
+        }
+    };
+};
+
 export const POST_TASK_TOGGLE = 'POST_TASK_TOGGLE';
 export const postTaskToggle = (id, status) => {
     return {
@@ -51,17 +77,17 @@ export const taskListSortBy = (sortField) => {
     };
 };
 
-export function saveTask(inputs) {
+export function saveTask(task) {
     return function (dispatch) {
 
-        dispatch(postAddTask(inputs))
+        dispatch(postAddTask(task));
 
         let form = new FormData();
-        form.append('id', 'new');
+        form.append('id', task.id);
         form.append('status', 0);
-        form.append('description', inputs.description);
-        form.append('targetDate', (inputs.targetDate.toJSON()).split('T')[0]);
-        form.append('priority', inputs.priority);
+        form.append('description', task.description);
+        form.append('targetDate', (task.targetDate.toJSON()).split('T')[0]);
+        form.append('priority', task.priority);
 
         return fetch('/task/save', {
             method: 'post',
@@ -69,6 +95,27 @@ export function saveTask(inputs) {
         })
         .then(response => response.json())
         .then(json => dispatch(receiveAddTask(json)));
+    }
+};
+
+export function editTask(task) {
+    return function (dispatch) {
+
+        dispatch(postTaskEdit(task));
+
+        let form = new FormData();
+        form.append('id', task.id);
+        form.append('status', task.status);
+        form.append('description', task.description);
+        form.append('targetDate', (task.targetDate.toJSON()).split('T')[0]);
+        form.append('priority', task.priority);
+
+        return fetch('/task/save', {
+            method: 'post',
+            body: form
+        })
+        .then(response => response.json())
+        .then(json => dispatch(receiveTaskEdit(json)));
     }
 };
 
@@ -93,7 +140,6 @@ export const toggleTask = (id, status) => {
 
 export const TASKLIST_VISIBILITY_FILTER = 'TASKLIST_VISIBILITY_FILTER';
 export const taskListVisibiltyFilter = (visibilityFilter) => {
-    console.log('Vis action', visibilityFilter);
     return {
         type: TASKLIST_VISIBILITY_FILTER,
         visibilityFilter: visibilityFilter

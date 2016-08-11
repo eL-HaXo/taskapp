@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(taskListSortBy(sortField));
         },
         onVisibilityFilterChange: (e, visibilityFilter) => {
-            console.log('onVisibilityFilterChange', visibilityFilter);
             dispatch(taskListVisibiltyFilter(visibilityFilter));
         }
     }

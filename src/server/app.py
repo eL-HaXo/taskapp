@@ -1,12 +1,12 @@
 #  . taskapp/bin/activate
-from __future__ import print_function # In python 2.7
-import sys
+import logging
 from random import random
 from flask import Flask, send_file, request, jsonify
-app = Flask(__name__)
 
-def plog(msg):
-    print(msg, file=sys.stderr)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+app = Flask(__name__)
 
 @app.route("/hello")
 def hello():
@@ -18,9 +18,6 @@ def task_status():
         task_id = int(request.form["id"])
         status = int(request.form["status"])
         status = 1 if status == 0 else 0
-        plog("TOGGLE:")
-        plog("task_id = " + str(task_id))
-        plog("status = " + str(status))
     return jsonify({
         "id": task_id,
         "status": status
@@ -35,15 +32,12 @@ def save_task():
             status = 0
             task_id = int(round(random() * 1000))
         else:
+            logging.info("EDIT TASK ID ---- Task ID %s" % task_id)
             task_id = int(task_id)
         description = request.form["description"]
         target_date = request.form["targetDate"]
         priority = request.form["priority"]
-        plog("Form Inputs:")
-        plog("task id = " + str(task_id))
-        plog(description)
-        plog(target_date)
-        plog(priority)
+
     return jsonify({
         "id": task_id,
         "description": description,

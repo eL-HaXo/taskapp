@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { saveTask } from '../actions';
+import { editTask } from '../actions';
 import { push } from 'redux-router';
 import { CardActions } from 'material-ui/Card';
 
@@ -16,12 +16,13 @@ const getTaskToEdit = (tasks, taskId) => {
 let EditTask = (props) => {
     const { dispatch } = props;
 
-    let buildTaskPayload = (taskId, description, targetDate, priority) => {
-        dispatch(saveTask({
-            taskId: taskId,
+    let buildTaskPayload = (taskId, description, targetDate, priority, status) => {
+        dispatch(editTask({
+            id: taskId,
             description: description,
             targetDate: targetDate,
-            priority: priority
+            priority: priority,
+            status: status
         }));
     };
 
