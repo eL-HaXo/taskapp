@@ -9,39 +9,39 @@ import {
     RECEIVE_TASK_EDIT
 } from '../actions';
 
-const DEFAULT_SORT_ORDER = 'targetDate';
+const DEFAULT_SORT_ORDER = 'target_date';
 const defaultTasksState = {
     isFetching: false,
     sortField: DEFAULT_SORT_ORDER,
     tasks: [{
-        id: 1,
+        task_id: 1,
         description: "High Priority Task.",
         priority: 1,
         status: 0,
-        targetDate: new Date()
+        target_date: new Date()
     },{
-        id: 2,
+        task_id: 2,
         description: "Medium Priority Task.",
         priority: 2,
         status: 0,
-        targetDate: new Date()
+        target_date: new Date()
     },{
-        id: 3,
+        task_id: 3,
         description: "Low Priority Task.",
         priority: 3,
         status: 1,
-        targetDate: new Date()
+        target_date: new Date()
     }]
 };
 const SORT_ORDERS = {
-    targetDate: ['targetDate', 'priority', 'status'],
-    priority: ['priority', 'targetDate', 'status'],
-    description: ['description', 'targetDate', 'priority', 'status']
+    target_date: ['target_date', 'priority', 'status'],
+    priority: ['priority', 'target_date', 'status'],
+    description: ['description', 'target_date', 'priority', 'status']
 };
 
 const task = (state = {}, action) => {
 
-    if (state.id !== action.id)
+    if (state.task_id !== action.task_id)
         return state;
 
     switch (action.type) {
@@ -98,7 +98,7 @@ const tasks = (state = defaultTasksState , action) => {
             return Object.assign({}, state, {
                 isFetching: false,
                 tasks: _.sortBy([
-                    ..._.filter(state.tasks, (t) => { return t.id !== action.updatedTask.id }),
+                    ..._.filter(state.tasks, (t) => { return t.task_id !== action.updatedTask.task_id }),
                     action.updatedTask
                 ], sortOrder)
             });

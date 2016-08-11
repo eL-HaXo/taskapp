@@ -2,7 +2,7 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: "./src/client/app.js",
     output: {
-        path:  __dirname + "/src/server/static",
+        path:  __dirname + "/src/server/ebdjango/ebdjango/static",
         filename: "bundle.js"
     },
     module: {

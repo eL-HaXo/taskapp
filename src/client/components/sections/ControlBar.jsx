@@ -32,7 +32,7 @@ class ControlBar extends React.Component{
                         }
                         onChange={this.props.onSortOrderChange}
                         value={this.props.sortField}>
-                        <MenuItem value="targetDate" primaryText="Target Date" />
+                        <MenuItem value="target_date" primaryText="Target Date" />
                         <MenuItem value="priority" primaryText="Priority" />
                         <MenuItem value="description" primaryText="Description" />
                     </IconMenu>

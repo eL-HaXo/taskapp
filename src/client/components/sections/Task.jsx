@@ -40,13 +40,13 @@ class Task extends React.Component{
                 <CardHeader
                     title={task.description}
                     className={(task.status) ? "task-visible task-visible-complete" : "task-visible"}
-                    subtitle={dtFormat(task.targetDate)}
+                    subtitle={dtFormat(task.target_date)}
                     actAsExpander={true}
                     showExpandableButton={true}
                 />
                 <CardActions expandable={true}>
-                    <StatusButton onClick={() => { this.props.onTaskToggleClick(task.id, task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
-                    <Link to={'/edit/'+task.id}><FlatButton label="Edit" /></Link>
+                    <StatusButton onClick={() => { this.props.onTaskToggleClick(task.task_id, task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
+                    <Link to={'/edit/'+task.task_id}><FlatButton label="Edit" /></Link>
                 </CardActions>
             </Card>
         );

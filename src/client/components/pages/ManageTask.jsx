@@ -25,12 +25,12 @@ class ManageTask extends React.Component{
         this._submitForm = this._submitForm.bind(this);
     }
 
-    _submitForm(e, taskId, description, targetDate, priority, status) {
+    _submitForm(e, taskId, description, target_date, priority, status) {
         e.preventDefault();
         this.props.onSubmit(
             taskId.state.value,
             description.state.value,
-            targetDate.state.value,
+            target_date.state.value,
             priority.state.value,
             status.state.value
         );
@@ -40,19 +40,19 @@ class ManageTask extends React.Component{
         let formTitle = 'Add Task';
         let formSubTitle = 'Fill out the fields below to create a new task';
         let task = _.get(this.props, 'task', {});
-        let description, targetDate, priority, taskId, status;
+        let description, target_date, priority, taskId, status;
         let valueDescription = task.description || "";
 
         let taskStatus = _.get(task, 'status', 0);
 
         return (
             <div className="content-padding">
-                <form onSubmit={(e) => { this._submitForm(e, taskId, description, targetDate, priority, status); }}>
+                <form onSubmit={(e) => { this._submitForm(e, taskId, description, target_date, priority, status); }}>
                     <TaskId
                         ref={node => {
                             taskId = node;
                         }}
-                        value={task.id || 'new'} />
+                        value={task.task_id || 'new'} />
                     <Status
                         ref={node => {
                             status = node;
@@ -74,9 +74,9 @@ class ManageTask extends React.Component{
                             <div>
                                 <TargetDate
                                     ref={node => {
-                                        targetDate = node;
+                                        target_date = node;
                                     }}
-                                    value={task.targetDate || ''} />
+                                    value={task.target_date || ''} />
                             </div>
                             <div>
                                 <Priority

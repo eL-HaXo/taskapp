@@ -11,9 +11,9 @@ class TargetDate extends React.Component{
         };
     }
 
-    _handleFieldChange(e, targetDate) {
+    _handleFieldChange(e, target_date) {
         this.setState({
-            value: targetDate,
+            value: target_date,
         });
     }
 
@@ -22,7 +22,7 @@ class TargetDate extends React.Component{
             <DatePicker
                 floatingLabelText="Target Date"
                 hintText="When do you expect to complete this task?"
-                name="targetDate"
+                name="target_date"
                 onChange={this._handleFieldChange}
                 defaultDate={this.state.value}
                 firstDayOfWeek={0}

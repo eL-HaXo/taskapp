@@ -4,10 +4,10 @@ export const POST_TASK_ADD = 'POST_TASK_ADD';
 export const postAddTask = (inputs) => {
     return {
         type: POST_TASK_ADD,
-        id: 'new',
+        task_id: 'new',
         description: inputs.description,
         priority: inputs.priority,
-        targetDate: inputs.targetDate
+        target_date: inputs.target_date
     }
 };
 
@@ -16,9 +16,9 @@ export const receiveAddTask = (json) => {
     return {
         type: RECEIVE_TASK_ADD,
         newTask: {
-            id: json.id,
+            task_id: json.task_id,
             description: json.description,
-            targetDate: new Date(json.targetDate),
+            target_date: new Date(json.target_date),
             priority: json.priority,
             status: json.status
         }
@@ -29,11 +29,11 @@ export const POST_TASK_EDIT = 'POST_TASK_EDIT';
 export const postTaskEdit = (task) => {
     return {
         type: POST_TASK_EDIT,
-        id: task.id,
+        task_id: task.task_id,
         status: task.status,
         description: task.description,
         priority: task.priority,
-        targetDate: task.targetDate
+        target_date: task.target_date
     }
 };
 
@@ -42,9 +42,9 @@ export const receiveTaskEdit = (json) => {
     return {
         type: RECEIVE_TASK_EDIT,
         updatedTask: {
-            id: json.id,
+            task_id: json.task_id,
             description: json.description,
-            targetDate: new Date(json.targetDate),
+            target_date: new Date(json.target_date),
             priority: json.priority,
             status: json.status
         }
@@ -55,7 +55,7 @@ export const POST_TASK_TOGGLE = 'POST_TASK_TOGGLE';
 export const postTaskToggle = (id, status) => {
     return {
         type: POST_TASK_TOGGLE,
-        id: id,
+        task_id: id,
         status: status
     };
 };
@@ -64,7 +64,7 @@ export const RECEIVE_TASK_TOGGLE = 'RECEIVE_TASK_TOGGLE';
 export const receiveTaskToggle = (json) => {
     return {
         type: RECEIVE_TASK_TOGGLE,
-        id: json.id,
+        task_id: json.task_id,
         status: json.status
     };
 };
@@ -83,10 +83,10 @@ export function saveTask(task) {
         dispatch(postAddTask(task));
 
         let form = new FormData();
-        form.append('id', task.id);
+        // form.append('id', task.task_id);
         form.append('status', 0);
         form.append('description', task.description);
-        form.append('targetDate', (task.targetDate.toJSON()).split('T')[0]);
+        form.append('target_date', (task.target_date.toJSON()).split('T')[0]);
         form.append('priority', task.priority);
 
         return fetch('/task/save', {
@@ -104,10 +104,10 @@ export function editTask(task) {
         dispatch(postTaskEdit(task));
 
         let form = new FormData();
-        form.append('id', task.id);
+        form.append('id', task.task_id);
         form.append('status', task.status);
         form.append('description', task.description);
-        form.append('targetDate', (task.targetDate.toJSON()).split('T')[0]);
+        form.append('target_date', (task.target_date.toJSON()).split('T')[0]);
         form.append('priority', task.priority);
 
         return fetch('/task/save', {

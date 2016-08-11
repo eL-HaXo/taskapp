@@ -34,12 +34,12 @@ class TaskList extends React.Component{
     render() {
         let tasks = [{
             description: 'This is a description of a task.',
-            targetDate: new Date(),
+            target_date: new Date(),
             priority: 3,
             status: 1
         }, {
             description: 'I have a much longer task that I need to complete but it is not due for a quite a while so it\'s low priority.',
-            targetDate: new Date(),
+            target_date: new Date(),
             priority: 1,
             status: 0
         }];

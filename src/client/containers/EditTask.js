@@ -9,18 +9,18 @@ import { SaveButton, CancelButton } from '../components/inputs';
 
 
 const getTaskToEdit = (tasks, taskId) => {
-    return (tasks.filter(t => t.id == taskId))[0];
+    return (tasks.filter(t => t.task_id == taskId))[0];
 };
 
 
 let EditTask = (props) => {
     const { dispatch } = props;
 
-    let buildTaskPayload = (taskId, description, targetDate, priority, status) => {
+    let buildTaskPayload = (taskId, description, target_date, priority, status) => {
         dispatch(editTask({
-            id: taskId,
+            task_id: taskId,
             description: description,
-            targetDate: targetDate,
+            target_date: target_date,
             priority: priority,
             status: status
         }));

@@ -10,12 +10,11 @@ import { SaveButton, CancelButton } from '../components/inputs';
 
 let AddTask = ({ dispatch }) => {
 
-    let buildTaskPayload = (taskId, description, targetDate, priority) => {
+    let buildTaskPayload = (taskId, description, target_date, priority) => {
         dispatch(saveTask({
-            id: taskId,
             status: status,
             description: description,
-            targetDate: targetDate,
+            target_date: target_date,
             priority: priority
         }));
     };
