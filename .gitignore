@@ -4,3 +4,11 @@ src/server/static/bundle.js
 *.pyc
 
 src/server/static/bundle.js
+
+*.pem
+
+*.pub
+
+src/server/ebdjango/static/bundle.js
+
+src/server/ebdjango/ebdjango/static/bundle.js

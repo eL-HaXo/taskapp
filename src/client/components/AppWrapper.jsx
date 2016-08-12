@@ -9,7 +9,7 @@ class AppWrapper extends React.Component{
         return (
             <div className="app">
                 <div className="header">
-                    <div className="header-logo"><Link to="/">tasks</Link></div>
+                    <div className="header-logo"><Link to="/tasklist">tasks</Link></div>
                 </div>
                 <div className="content">{this.props.children}</div>
                 <div className="footer" />

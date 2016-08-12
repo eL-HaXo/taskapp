@@ -36,8 +36,10 @@ class Task extends React.Component{
                     showExpandableButton={true}
                 />
                 <CardActions expandable={true}>
-                    <StatusButton onClick={() => { this.props.onTaskToggleClick(task.task_id, !task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
-                    <Link to={'/edit/'+task.task_id}><FlatButton label="Edit" /></Link>
+                    <div className="task-buttons">
+                        <StatusButton onClick={() => { this.props.onTaskToggleClick(task.task_id, !task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
+                        <Link to={'/edit/'+task.task_id}><FlatButton label="Edit" /></Link>
+                    </div>
                 </CardActions>
             </Card>
         );

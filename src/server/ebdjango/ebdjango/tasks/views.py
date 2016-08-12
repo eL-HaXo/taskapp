@@ -76,8 +76,5 @@ def get_or_create_tasklist(request):
     return JsonResponse({ 'success': True, 'tasklist': tasklist_tasks, 'tasklist_id': tasklist.tasklist_id, 'tasklist_name': tasklist.name })
 
 
-# def login_page(request):
-#     return render(request, 'index.html', {})
-
 def index(request, task_id=None):
     return render(request, 'index.html', {})

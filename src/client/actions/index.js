@@ -1,3 +1,5 @@
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 import { push } from 'react-router-redux';
 
 export const POST_LOGIN = 'LOGIN';
@@ -35,7 +37,7 @@ export const receiveAddTask = (json) => {
         newTask: {
             task_id: json.task_id,
             description: json.description,
-            target_date: new Date(json.target_date),
+            target_date: json.target_date,
             priority: json.priority,
             status: json.status
         }

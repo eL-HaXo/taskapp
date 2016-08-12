@@ -4,6 +4,7 @@ body {
     background-color: #f1f4f8;
 }
 
+
 .header {
     width: 100%;
     background: #ffffff;
@@ -62,4 +63,10 @@ body {
 
 .task-visible-complete * {
     text-decoration: line-through;
+}
+
+.task-buttons {
+    float: right;
+    height: 45px;
+
 }

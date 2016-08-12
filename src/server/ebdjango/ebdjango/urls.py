@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'edit/(?P<task_id>\w+)', views.index, name='edit'),
     url(r'add$', views.index, name='add'),
     url(r'^tasklist/$', views.index, name='index'),
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index, name='index')
 ]

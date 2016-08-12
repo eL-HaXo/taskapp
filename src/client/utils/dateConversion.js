@@ -4,7 +4,7 @@ let DateTimeFormat;
 /**
  * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
  */
-if (areIntlLocalesSupported(['fr'])) {
+if (areIntlLocalesSupported(['en-US'])) {
     DateTimeFormat = global.Intl.DateTimeFormat;
 } else {
     const IntlPolyfill = require('intl');
