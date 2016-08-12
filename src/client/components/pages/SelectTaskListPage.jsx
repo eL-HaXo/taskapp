@@ -34,12 +34,20 @@ class SelectTaskListPage extends React.Component{
         let username, password;
         return (
             <div className="content-padding">
+                <div className="logo">
+                    <div className="logo-oval">
+                        <div className="logo-text">tasks</div>
+                    </div>
+                    <p className="logo-subtext">Enter a task list name and password to get started.</p>
+                </div>
                 <form onSubmit={(e) => { this._submitForm(e, username, password); }}>
                     <Card className="form">
-                        <CardTitle
-                            title="Load Task List"
-                            subtitle="Enter a new or existing task list name and password"
-                        />
+                        {
+                        // <CardTitle
+                        //     title="Load Task List"
+                        //     subtitle="Enter a new or existing task list name and password"
+                        // />
+                        }
                         <CardText>
                             <div>
                                 <Username

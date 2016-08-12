@@ -29,6 +29,34 @@ body {
     color:#41a5ff;
 }
 
+.logo {
+    margin: 40px 0 40px 0;
+}
+
+.logo-oval {
+    text-align: center;
+    margin: auto;
+    background: #41a5ff;
+    width: 106px;
+    padding: 8px;
+    -moz-border-radius: 96px / 48px;
+    -webkit-border-radius: 96px / 48px;
+    border-radius: 96px / 48px;
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+
+.logo-oval .logo-text {
+    color: #edf6ff;
+    font-size: 30pt;
+    font-weight: bold;
+    letter-spacing: -0.03em;
+}
+
+.logo-subtext {
+    text-align: center;
+    color: #565656;
+}
+
 .content-padding {
     padding: 15px;
 }

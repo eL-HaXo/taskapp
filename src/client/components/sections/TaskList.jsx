@@ -15,11 +15,11 @@ class TaskList extends React.Component{
             visibilityFilter
         } = this.props;
 
-        let noTasksMessage = 'You don\'t have any tasks';
+        let noTasksMessage = 'Add your first task!';
         if (visibilityFilter === 'COMPLETE')
-            noTasksMessage = 'You don\'t have any completed tasks';
+            noTasksMessage = 'You haven\'t completed any tasks yet. Get to it!';
         else if (visibilityFilter === 'TODO')
-            noTasksMessage = 'You don\'t have any active tasks';
+            noTasksMessage = 'You don\'t have anything to do.';
 
         return (
             <div>
