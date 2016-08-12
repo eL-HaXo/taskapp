@@ -7,10 +7,17 @@ class TargetDate extends React.Component{
     constructor() {
         super();
         this. _handleFieldChange = this. _handleFieldChange.bind(this);
-        console.log('TargetDate.constructor', this.props);
+
         this.state = {
             value: new Date()
         };
+    }
+
+    componentWillMount() {
+        if (_.get(this.props, 'value', false))
+            this.setState({
+                value: this.props.value
+            });
     }
 
     _handleFieldChange(e, target_date) {
