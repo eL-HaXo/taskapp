@@ -100,7 +100,7 @@ class ManageTask extends React.Component{
                                     ref={node => {
                                         priority = node;
                                     }}
-                                    value={task.priority || ''} />
+                                    value={task.priority || 1} />
                             </div>
                         </CardText>
                         {this.props.children}

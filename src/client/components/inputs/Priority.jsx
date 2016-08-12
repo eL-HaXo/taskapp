@@ -14,6 +14,13 @@ class Priority extends React.Component{
         };
     }
 
+    componentWillMount() {
+        if (_.get(this.props, 'value', null))
+            this.setState({
+                value: this.props.value
+            });
+    }
+
     _handleFieldChange(e, k, payload) {
         this.setState({
             value: payload
