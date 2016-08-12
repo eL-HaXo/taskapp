@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createTask } from '../actions';
-import { push } from 'redux-router';
 import { CardActions } from 'material-ui/Card';
+import { push } from 'react-router-redux';
 
 import { ManageTask } from '../components/pages';
 import { SaveButton, CancelButton } from '../components/inputs';
@@ -11,6 +11,15 @@ import { SaveButton, CancelButton } from '../components/inputs';
 const mapStateToProps = (state) => {
     return {
         tasklistId: state.tasks.tasklistId
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        redirectToSelectTaskList: () => {
+            console.log('Dispatch');
+            dispatch(push('/'));
+        }
     }
 };
 
@@ -31,7 +40,8 @@ let AddTask = (props) => {
             title="Add Task"
             subtitle="Fill out the fields below to create a new task"
             onSubmit={buildTaskPayload}
-            tasklistId={props.tasklistId}>
+            tasklistId={props.tasklistId}
+            redirectToSelectTaskList={props.redirectToSelectTaskList}>
             <CardActions>
                 <CancelButton />
                 <SaveButton />
@@ -41,7 +51,8 @@ let AddTask = (props) => {
 };
 
 AddTask = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(AddTask);
 
 export default AddTask;

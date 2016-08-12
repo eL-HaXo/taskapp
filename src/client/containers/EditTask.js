@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { editTask } from '../actions';
-import { push } from 'redux-router';
+import { push } from 'react-router-redux';
 import { CardActions } from 'material-ui/Card';
 
 import { ManageTask } from '../components/pages';
@@ -37,13 +37,23 @@ let EditTask = (props) => {
             title="Edit Task"
             subtitle="Change the fields below to update this task"
             onSubmit={buildTaskPayload}
-            tasklistId={props.tasklistId}>
+            tasklistId={props.tasklistId}
+            redirectToSelectTaskList={props.redirectToSelectTaskList}>
             <CardActions>
                 <CancelButton onClick={cancelEdit} />
                 <SaveButton />
             </CardActions>
         </ManageTask>
     );
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        redirectToSelectTaskList: () => {
+            dispatch(push('/'));
+        }
+    }
 };
 
 
@@ -55,6 +65,9 @@ const mapStateToProps = (state, props) => {
 };
 
 
-EditTask = connect(mapStateToProps)(EditTask);
+EditTask = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EditTask);
 
 export default EditTask;

@@ -7,6 +7,7 @@ class TargetDate extends React.Component{
     constructor() {
         super();
         this. _handleFieldChange = this. _handleFieldChange.bind(this);
+        console.log('TargetDate.constructor', this.props);
         this.state = {
             value: new Date()
         };

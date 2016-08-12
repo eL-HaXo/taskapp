@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 let VisibleTasks = (props) => {
-    
+
     return (
         <TaskList
             onTaskToggleClick={props.onTaskToggleClick}

@@ -31,6 +31,11 @@ class ManageTask extends React.Component{
         this._submitForm = this._submitForm.bind(this);
     }
 
+    componentWillMount() {
+        if (!_.get(this.props, 'tasklistId', false))
+            return this.props.redirectToSelectTaskList();
+    }
+
     _submitForm(e, tasklistId, taskId, description, target_date, priority, status) {
         e.preventDefault();
         this.props.onSubmit({
