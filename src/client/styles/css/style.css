@@ -48,6 +48,7 @@ body {
 .logo-oval .logo-text {
     color: #edf6ff;
     font-size: 30pt;
+    text-decoration: none;
     font-weight: bold;
     letter-spacing: -0.03em;
 }

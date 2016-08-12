@@ -28,8 +28,6 @@ import {
     Task
 } from '../sections';
 
-import DateTimeFormat from '../../utils/dateTimeFormat.js';
-
 class TaskList extends React.Component{
     render() {
         return (

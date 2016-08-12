@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import DatePicker from 'material-ui/DatePicker';
-import DateTimeFormat from '../../utils/dateTimeFormat.js';
 
 class TargetDate extends React.Component{
     constructor() {

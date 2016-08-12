@@ -35,9 +35,11 @@ class SelectTaskListPage extends React.Component{
         return (
             <div className="content-padding">
                 <div className="logo">
-                    <div className="logo-oval">
-                        <div className="logo-text">tasks</div>
-                    </div>
+                    <a href="https://github.com/eL-HaXo/taskapp" target="_blank" style={{ textDecoration: 'none' }}>
+                        <div className="logo-oval">
+                            <div className="logo-text">tasks</div>
+                        </div>
+                    </a>
                     <p className="logo-subtext">Enter a task list name and password to get started.</p>
                 </div>
                 <form onSubmit={(e) => { this._submitForm(e, username, password); }}>
