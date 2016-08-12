@@ -4,6 +4,11 @@ import _ from 'lodash';
 import Task from './Task.jsx';
 
 class TaskList extends React.Component{
+    componentWillMount() {
+          if (!_.get(this.props, 'taskListId', false))
+                return this.props.redirectToSelectTaskList()
+    }
+
     render() {
         let {
             tasks,

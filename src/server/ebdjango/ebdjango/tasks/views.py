@@ -12,43 +12,54 @@ def task_new(request):
     valid_form = False
     if request.method == 'POST':
         form = NewTaskForm(request.POST)
-        print 'form valid', form.is_valid()
-        if not form.is_valid():
-            print form.errors
+        if form.is_valid():
+            task = form.save()
+            return JsonResponse({
+                'task_id': task.task_id,
+                'description': task.description,
+                'target_date': task.target_date,
+                'priority': task.priority,
+                'status': task.status
+            })
 
-    return JsonResponse({ 'valid_form': form.is_valid() })
-    # {
-    #     "task_id": task_id,
-    #     "description": description,
-    #     "targetd_ate": target_date,
-    #     "priority": priority,
-    #     "status": int(status)
-    # }
+    return JsonResponse({ 'error': 'Could not save task.' })
+
+
+def task_edit(request):
+    valid_form = False
+    if request.method == 'POST':
+        instance = Task.objects.get(task_id=request.POST['id'])
+        form = EditTaskForm(request.POST, instance=instance)
+        if form.is_valid():
+            task = form.save()
+            return JsonResponse({
+                'task_id': task.task_id,
+                'description': task.description,
+                'target_date': task.target_date,
+                'priority': task.priority,
+                'status': task.status
+            })
+
+    return JsonResponse({ 'error': 'Could not save task.' })
 
 
 def task_status(request):
     if request.method == 'POST':
-        print 'REQUEST'
-        form = TaskStatusForm(request.POST)
-        print form
-        print form.is_valid()
+        instance = Task.objects.get(task_id=request.POST['id'])
+        form = TaskStatusForm(request.POST, instance=instance)
+        if form.is_valid():
+            task = form.save()
 
     return JsonResponse({
-        'task_id': 'task_id',
-        'status': 'status'
+        'task_id': task.task_id,
+        'status': task.status
     })
 
-
-# def create_tasklist(request):
-#     username = request.POST.get('username')
-#     password = request.POST.get('password')
-#     tasklist = TaskList.objects.get(user_id=user.id)
 
 def get_or_create_tasklist(request):
     """ Logs in a user and retrieves their task list """
     tasklist_name = request.POST.get('tasklist_name')
     tasklist_password = request.POST.get('tasklist_password')
-        # Get Task List
     try:
         tasklist = TaskList.objects.get(name=tasklist_name, password=tasklist_password)
         tasklist_tasks = [{
@@ -62,19 +73,11 @@ def get_or_create_tasklist(request):
         tasklist = TaskList.objects.create(name=tasklist_name, password=tasklist_password)
         tasklist_tasks = []
         pass
-    print "TASKLIST ID:", tasklist.tasklist_id
     return JsonResponse({ 'success': True, 'tasklist': tasklist_tasks, 'tasklist_id': tasklist.tasklist_id, 'tasklist_name': tasklist.name })
-    # else:
-    #     return JsonResponse({ 'error': 'Sorry. I couldn\'t find that username / password combination.' })
 
 
-def login_page(request):
-    # return render(request, 'login.html', {'new_user_form': NewUserForm})
-    print "Login View"
-    return render(request, 'index.html', {})
+# def login_page(request):
+#     return render(request, 'index.html', {})
 
-
-# @login_required(login_url='/login')
 def index(request, task_id=None):
-    print "Index View"
     return render(request, 'index.html', {})

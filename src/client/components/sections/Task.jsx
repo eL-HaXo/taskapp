@@ -11,22 +11,13 @@ import {
     CardText
 } from 'material-ui/Card';
 
-import DateTimeFormat from '../../utils/dateTimeFormat.js';
-
-// import ToggleTask from '../../containers/ToggleTask.js';
+import { displayDateString } from '../../utils/dateConversion.js';
 
 import { StatusButton } from '../inputs';
 
 class Task extends React.Component{
     render() {
         let task = this.props.task;
-
-        let dtFormat = new DateTimeFormat('en-US', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-        }).format;
 
         const PRIORITY_COLORS = {
             1: '#FF1B47',
@@ -40,12 +31,12 @@ class Task extends React.Component{
                 <CardHeader
                     title={task.description}
                     className={(task.status) ? "task-visible task-visible-complete" : "task-visible"}
-                    subtitle={dtFormat(task.target_date)}
+                    subtitle={displayDateString(task.target_date)}
                     actAsExpander={true}
                     showExpandableButton={true}
                 />
                 <CardActions expandable={true}>
-                    <StatusButton onClick={() => { this.props.onTaskToggleClick(task.task_id, task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
+                    <StatusButton onClick={() => { this.props.onTaskToggleClick(task.task_id, !task.status)}} label={(task.status) ? "RE-OPEN" : "COMPLETE"} />
                     <Link to={'/edit/'+task.task_id}><FlatButton label="Edit" /></Link>
                 </CardActions>
             </Card>

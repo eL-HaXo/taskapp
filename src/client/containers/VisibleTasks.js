@@ -1,6 +1,8 @@
-import {connect} from 'react-redux'
-import {toggleTask} from '../actions';
-import {TaskList} from '../components/sections';
+import React from 'react';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux'
+import { toggleTask } from '../actions';
+import { TaskList } from '../components/sections';
 
 const getVisibleTasks = (tasks, filter) => {
     if (tasks === undefined)
@@ -20,6 +22,7 @@ const getVisibleTasks = (tasks, filter) => {
 
 const mapStateToProps = (state) => {
     return {
+        taskListId: state.tasks.tasklistId,
         tasks: getVisibleTasks(state.tasks.tasks, state.visibilityFilter),
         visibilityFilter: state.visibilityFilter
     }
@@ -29,13 +32,29 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onTaskToggleClick: (id, status) => {
             dispatch(toggleTask(id, status))
+        },
+        redirectToSelectTaskList: () => {
+            dispatch(push('/'))
         }
     }
 };
 
-const VisibleTasks = connect(
+let VisibleTasks = (props) => {
+    
+    return (
+        <TaskList
+            onTaskToggleClick={props.onTaskToggleClick}
+            tasks={props.tasks}
+            taskListId={props.taskListId}
+            visibilityFilter={props.visibilityFilter}
+            redirectToSelectTaskList={props.redirectToSelectTaskList}
+        />
+    );
+}
+
+VisibleTasks = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TaskList);
+)(VisibleTasks);
 
 export default VisibleTasks;

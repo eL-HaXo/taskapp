@@ -61,7 +61,7 @@ export const receiveTaskEdit = (json) => {
         updatedTask: {
             task_id: json.task_id,
             description: json.description,
-            target_date: new Date(json.target_date),
+            target_date: json.target_date,
             priority: json.priority,
             status: json.status
         }
@@ -111,33 +111,38 @@ export function login(credentials) {
         .then((json) => {
             if (json.success) {
                 dispatch(receiveTaskList(json));
-                dispatch(push('/tasklist'));
             }
             else {
                 alert('Login failed');
             }
+        })
+        .then((a) => {
+            dispatch(push('/tasklist'))
         });
     }
 };
 
-export function saveTask(task) {
+export function createTask(task) {
     return function (dispatch) {
 
         dispatch(postAddTask(task));
 
         let form = new FormData();
-        // form.append('id', task.task_id);
-        form.append('status', 0);
+        form.append('tasklist', task.tasklistId);
+        // form.append('status', false);
         form.append('description', task.description);
-        form.append('target_date', (task.target_date.toJSON()).split('T')[0]);
+        form.append('target_date', task.target_date);
         form.append('priority', task.priority);
 
-        return fetch('/task/save', {
+        return fetch('/task/create', {
             method: 'post',
             body: form
         })
         .then(response => response.json())
-        .then(json => dispatch(receiveAddTask(json)));
+        .then((json) => {
+            dispatch(receiveAddTask(json));
+            dispatch(push('/tasklist'));
+        });
     }
 };
 
@@ -148,17 +153,21 @@ export function editTask(task) {
 
         let form = new FormData();
         form.append('id', task.task_id);
+        form.append('tasklist', task.tasklist)
         form.append('status', task.status);
         form.append('description', task.description);
-        form.append('target_date', (task.target_date.toJSON()).split('T')[0]);
+        form.append('target_date', task.target_date);
         form.append('priority', task.priority);
 
-        return fetch('/task/save', {
+        return fetch('/task/update', {
             method: 'post',
             body: form
         })
         .then(response => response.json())
-        .then(json => dispatch(receiveTaskEdit(json)));
+        .then((json) => {
+            dispatch(receiveTaskEdit(json));
+            dispatch(push('/tasklist'));
+        });
     }
 };
 

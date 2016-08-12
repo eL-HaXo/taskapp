@@ -4,7 +4,7 @@ class Status extends React.Component{
     constructor() {
         super();
         this.state = {
-            value: 0
+            value: false
         };
     }
 

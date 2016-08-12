@@ -16,13 +16,14 @@ const getTaskToEdit = (tasks, taskId) => {
 let EditTask = (props) => {
     const { dispatch } = props;
 
-    let buildTaskPayload = (taskId, description, target_date, priority, status) => {
+    let buildTaskPayload = (task) => {
         dispatch(editTask({
-            task_id: taskId,
-            description: description,
-            target_date: target_date,
-            priority: priority,
-            status: status
+            task_id: task.taskId,
+            tasklist: task.tasklistId,
+            description: task.description,
+            target_date: task.target_date,
+            priority: task.priority,
+            status: task.status
         }));
     };
 
@@ -35,7 +36,8 @@ let EditTask = (props) => {
             task={props.task}
             title="Edit Task"
             subtitle="Change the fields below to update this task"
-            onSubmit={buildTaskPayload}>
+            onSubmit={buildTaskPayload}
+            tasklistId={props.tasklistId}>
             <CardActions>
                 <CancelButton onClick={cancelEdit} />
                 <SaveButton />
@@ -44,11 +46,14 @@ let EditTask = (props) => {
     );
 };
 
+
 const mapStateToProps = (state, props) => {
     return {
-        task: getTaskToEdit(state.tasks.tasks, props.params.taskId)
+        task: getTaskToEdit(state.tasks.tasks, props.params.taskId),
+        tasklistId: state.tasks.tasklistId
     }
 };
+
 
 EditTask = connect(mapStateToProps)(EditTask);
 

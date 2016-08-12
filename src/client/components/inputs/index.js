@@ -10,6 +10,7 @@ import Status from './Status.jsx';
 import Username from './Username.jsx';
 import Password from './Password.jsx';
 import LoginButton from './LoginButton.jsx';
+import TaskListId from './TaskListId.jsx';
 
 module.exports = {
     Description: Description,
@@ -23,5 +24,6 @@ module.exports = {
     Status: Status,
     Username: Username,
     Password: Password,
-    LoginButton: LoginButton
+    LoginButton: LoginButton,
+    TaskListId: TaskListId
 };

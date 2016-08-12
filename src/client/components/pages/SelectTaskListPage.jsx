@@ -24,7 +24,6 @@ class SelectTaskListPage extends React.Component{
 
     _submitForm(e, username, password) {
         e.preventDefault();
-        console.log('this.props.onSubmit',this.props.onSubmit);
         this.props.onSubmit(
             username.state.value,
             password.state.value
@@ -33,7 +32,6 @@ class SelectTaskListPage extends React.Component{
 
     render() {
         let username, password;
-        console.log('LOGIN');
         return (
             <div className="content-padding">
                 <form onSubmit={(e) => { this._submitForm(e, username, password); }}>

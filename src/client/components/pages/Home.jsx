@@ -56,13 +56,6 @@ class TaskList extends React.Component{
                 <ViewControls />
                 <div className="content-padding">
                     <VisibleTasks />
-                    {
-                        // _.map(tasks, (task, i) => {
-                        //     return (
-                        //         <Task key={i} task={task} />
-                        //     );
-                        // })
-                    }
                     <GoToAddTask />
                 </div>
             </div>

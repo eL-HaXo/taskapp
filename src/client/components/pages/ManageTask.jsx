@@ -11,6 +11,7 @@ import {
 // Form Inputs
 import  {
     TaskId,
+    TaskListId,
     Status,
     Description,
     TargetDate,
@@ -19,40 +20,51 @@ import  {
     CancelButton
 } from '../inputs';
 
+import {
+    dateToString,
+    stringToDate
+} from '../../utils/dateConversion.js';
+
 class ManageTask extends React.Component{
     constructor() {
         super();
         this._submitForm = this._submitForm.bind(this);
     }
 
-    _submitForm(e, taskId, description, target_date, priority, status) {
+    _submitForm(e, tasklistId, taskId, description, target_date, priority, status) {
         e.preventDefault();
-        this.props.onSubmit(
-            taskId.state.value,
-            description.state.value,
-            target_date.state.value,
-            priority.state.value,
-            status.state.value
-        );
+        this.props.onSubmit({
+            taskId: taskId.state.value,
+            tasklistId: tasklistId.state.value,
+            description: description.state.value,
+            target_date: dateToString(target_date.state.value),
+            priority: priority.state.value,
+            status: status.state.value
+        });
     }
 
     render() {
         let formTitle = this.props.title || 'Add Task';
         let formSubTitle = this.props.subtitle || 'Fill out the fields below to create a new task';
         let task = _.get(this.props, 'task', {});
-        let description, target_date, priority, taskId, status;
+        let description, target_date, priority, taskId, status, tasklistId;
         let valueDescription = task.description || "";
 
-        let taskStatus = _.get(task, 'status', 0);
-
+        let taskStatus = _.get(task, 'status', false);
+        let targetDate = (task.target_date) ? stringToDate(task.target_date) : '';
         return (
             <div className="content-padding">
-                <form onSubmit={(e) => { this._submitForm(e, taskId, description, target_date, priority, status); }}>
+                <form onSubmit={(e) => { this._submitForm(e, tasklistId, taskId, description, target_date, priority, status); }}>
                     <TaskId
                         ref={node => {
                             taskId = node;
                         }}
                         value={task.task_id || 'new'} />
+                    <TaskListId
+                        ref={node => {
+                            tasklistId = node;
+                        }}
+                        value={this.props.tasklistId} />
                     <Status
                         ref={node => {
                             status = node;
@@ -76,7 +88,7 @@ class ManageTask extends React.Component{
                                     ref={node => {
                                         target_date = node;
                                     }}
-                                    value={task.target_date || ''} />
+                                    value={targetDate} />
                             </div>
                             <div>
                                 <Priority
