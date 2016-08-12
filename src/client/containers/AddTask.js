@@ -19,27 +19,25 @@ const mapDispatchToProps = (dispatch) => {
         redirectToSelectTaskList: () => {
             console.log('Dispatch');
             dispatch(push('/'));
+        },
+        buildTaskPayload: (task) => {
+            dispatch(createTask({
+                tasklistId: task.tasklistId,
+                status: task.status,
+                description: task.description,
+                target_date: task.target_date,
+                priority: task.priority
+            }));
         }
     }
 };
 
 let AddTask = (props) => {
-    let { dispatch } = props;
-    let buildTaskPayload = (task) => {
-        dispatch(createTask({
-            tasklistId: task.tasklistId,
-            status: task.status,
-            description: task.description,
-            target_date: task.target_date,
-            priority: task.priority
-        }));
-    };
-
     return (
         <ManageTask
             title="Add Task"
             subtitle="Fill out the fields below to create a new task"
-            onSubmit={buildTaskPayload}
+            onSubmit={props.buildTaskPayload}
             tasklistId={props.tasklistId}
             redirectToSelectTaskList={props.redirectToSelectTaskList}>
             <CardActions>
