@@ -1,26 +1,8 @@
-import areIntlLocalesSupported from 'intl-locales-supported';
+import moment from 'moment';
 
-let DateTimeFormat;
-/**
- * Use the native Intl.DateTimeFormat if available, or a polyfill if not.
- */
-if (areIntlLocalesSupported(['en-US'])) {
-    DateTimeFormat = global.Intl.DateTimeFormat;
-} else {
-    const IntlPolyfill = require('intl');
-    DateTimeFormat = IntlPolyfill.DateTimeFormat;
-    require('intl/locale-data/jsonp/fr');
-}
-
-const _dtFormat = new DateTimeFormat('en-US', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-}).format;
 
 const displayDate = (date) => {
-    return _dtFormat(date);
+    return moment(date).format('dddd, MMMM D, YYYYY');
 };
 
 
@@ -34,7 +16,7 @@ const stringToDate = (str) => {
 };
 
 const displayDateString = (string) => {
-    return _dtFormat(stringToDate(string));
+    return moment(string).format('dddd, MMMM D, YYYY');
 }
 
 module.exports = {

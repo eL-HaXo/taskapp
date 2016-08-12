@@ -5,7 +5,7 @@ class LoginButton extends React.Component{
     render() {
         return (
             <RaisedButton
-                label="Load Task List"
+                label="Go to your list"
                 primary={true}
                 fullWidth={true}
                 type="submit"

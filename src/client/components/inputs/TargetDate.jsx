@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import DatePicker from 'material-ui/DatePicker';
 import DateTimeFormat from '../../utils/dateTimeFormat.js';
 
@@ -27,13 +28,7 @@ class TargetDate extends React.Component{
                 defaultDate={this.state.value}
                 firstDayOfWeek={0}
                 fullWidth={true}
-                locale='en-Us'
-                formatDate={new DateTimeFormat('en-US', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                }).format}
+                formatDate={(dateObj) => { return moment(dateObj).format('dddd, MMMM D, YYYY'); }}
             />
         );
     }
