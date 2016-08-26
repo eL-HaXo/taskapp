@@ -1,9 +1,5 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.template import loader
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from django.core import serializers
 
 from ebdjango.tasks.models import Task, TaskList
 from ebdjango.tasks.forms import NewTaskForm, EditTaskForm, TaskStatusForm, NewUserForm
