@@ -7,9 +7,9 @@
 * React / Redux Front End
 * MySQL database on Amazon RDS
 
+---
 
-###### taskapp is a demo app that I put together as a "coding challenge" for a full-stack position
-###### These are the exact requirements from the email:
+### taskapp is a demo app that I put together as a "coding challenge" for a full-stack position. These are the exact requirements from the email:
 
 It's a "task management" web application, primarily designed for the phone.
 
